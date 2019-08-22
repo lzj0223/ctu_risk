@@ -7,8 +7,8 @@
             "email": "linzhijun@babytree-inc.com"
         }
     ],
-    "require": {
-
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
     },
     "autoload": {
         "psr-4": {"BPF\\CtuRisk\\": "src/"}

@@ -61,6 +61,6 @@ class CtuResponse
         $this->result = new CtuResult($response['result']);
         $this->status = $response['status'];
         $this->uuid = $response['uuid'];
-        $this->responseStatusMsg = isset($this->responseStatusMsgConfig[$this->status]) ?: '';
+        $this->responseStatusMsg = $this->responseStatusMsgConfig[$this->status]?: '未定义';
     }
 }

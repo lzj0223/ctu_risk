@@ -47,29 +47,31 @@ class HttpUtil
      */
     public function doPostRequest($url, $data, $timeout = 2)
     {
-        $params = array(
-            'http' => array(
-                'method' => 'POST',
-                'content' => $data,
-                'header' => 'Content-type:text/plain; charset=utf-8',
-                'timeout' => $timeout
-            )
-        );
+//        $params = array(
+//            'http' => array(
+//                'method' => 'POST',
+//                'content' => $data,
+//                'header' => 'Content-type:text/plain; charset=utf-8',
+//                'timeout' => $timeout
+//            )
+//        );
+//
+//        $ctx = stream_context_create($params);
+//        $fp = @fopen($url, 'rb', false, $ctx);
+//        if (!$fp) {
+//            $this->errMsg = 'server connect failed!';
+//            $this->close($fp);
+//            return false;
+//        }
+//        $response = @stream_get_contents($fp);
+//        if ($response === false) {
+//            $this->errMsg = 'get response failed!';
+//            $this->close($fp);
+//            return false;
+//        }
+//        $this->close($fp);
 
-        $ctx = stream_context_create($params);
-        $fp = @fopen($url, 'rb', false, $ctx);
-        if (!$fp) {
-            $this->errMsg = 'server connect failed!';
-            $this->close($fp);
-            return false;
-        }
-        $response = @stream_get_contents($fp);
-        if ($response === false) {
-            $this->errMsg = 'get response failed!';
-            $this->close($fp);
-            return false;
-        }
-        $this->close($fp);
+        $response = '{"uuid":"15251063-609f-43a0-b298-9843a926ede1","status":"SUCCESS","result":{"riskLevel":"REJECT","riskType":"root_jailbreak","suggestion":null,"hitPolicyCode":"P_1564042515826","hitPolicyName":"异常设备检测","hitRules":[{"id":1668,"leftValue":"iosJailbreak"}],"suggestPolicies":null,"flag":"","extraInfo":{"_success_execute":true,"_cost_time":2},"nameListJson":null,"policyScore":null,"nameListField":null}}';
         return $response;
     }
 

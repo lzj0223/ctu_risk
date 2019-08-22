@@ -39,13 +39,9 @@ class CtuClient
      */
     private $ctuResponse;
 
-    public $url;           // 风险防控服务URL
-    public $appId;         // 颁发的公钥,可公开
-    public $appSecret;     // 颁发的秘钥,严禁公开,请保管好,千万不要泄露!
-
-    public $connectTimeout = 3000;
-    public $connectionRequestTimeout = 2000;
-    public $socketTimeout = 5000;
+    private $url;           // 风险防控服务URL
+    private $appId;         // 颁发的公钥,可公开
+    private $appSecret;     // 颁发的秘钥,严禁公开,请保管好,千万不要泄露!
 
     /**
      * CtuClient constructor.
@@ -74,6 +70,14 @@ class CtuClient
      */
     public function getCtuResponseString(){
         return $this->ctuResponseString;
+    }
+
+    /**
+     * 获取风控返回解析后的结果
+     * @return CtuResponse
+     */
+    public function getCtuResponse() {
+        return $this->ctuResponse;
     }
 
     /**
@@ -106,7 +110,7 @@ class CtuClient
         //调用风控引擎
         $httpUtil = new HttpUtil($timeout);
         $this->ctuResponseString = $httpUtil->doPostRequest($requestUrl, $postData);
-        if ( $this->ctuResponseString === false) {
+        if (!$this->ctuResponseString) {
             $result = [
                 'uuid' => '',
                 'status' => '',
