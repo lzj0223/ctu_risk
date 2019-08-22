@@ -18,10 +18,10 @@ class CtuClient
     const VERSION = 1;     //client版本号  从1开始
 
     /**
-     * 默认风控接口地址
+     * 默认风险防控服务URL
      * @var string
      */
-    const DEFAULT_API_URL = 'http://antifraud.babytree.com/ctu/event.do';
+    const DEFAULT_API_URL = 'http://sec.dingxiang-inc.com/ctu/event.do';
 
     /**
      * 当前请求参数

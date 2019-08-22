@@ -5,10 +5,12 @@ use BPF\CtuRisk\CtuClient;
 use BPF\CtuRisk\Model\RiskLevel;
 
 
-$appId = 'xxx';
-$appSecret = 'xxxx';
+$appId = 'xxx'; // 风控app id
+$appSecret = 'xxxx'; // 风控 secret
 
+// 风控策略
+$eventRejectStrategy = [RiskLevel::REJECT];
 
 $ctuClient = new CtuClient($appId, $appSecret);
 
-$eventRejectStrategy = [RiskLevel::REJECT];
+//$ctuClient->connectionRequestTimeout
