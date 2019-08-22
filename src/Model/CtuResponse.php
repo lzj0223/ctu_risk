@@ -1,9 +1,9 @@
 <?php
-namespace BPF\CutRisk\Model;
+namespace BPF\CtuRisk\Model;
 /**
  * Class CtuResponse
  * 顶像风控返回结果类
- * @package BPF\CutRisk\Model
+ * @package BPF\CtuRisk\Model
  */
 class CtuResponse
 {

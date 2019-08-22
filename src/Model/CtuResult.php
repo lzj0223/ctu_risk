@@ -1,8 +1,8 @@
 <?php
-namespace BPF\CutRisk\Model;
+namespace BPF\CtuRisk\Model;
 /**
  * Class CtuResult
- * @package BPF\CutRisk\Model
+ * @package BPF\CtuRisk\Model
  */
 class CtuResult
 {

@@ -1,9 +1,9 @@
 <?php
-namespace BPF\CutRisk\Model;
+namespace BPF\CtuRisk\Model;
 /**
  * Class CtuRequest
  * 顶像风控请求对象
- * @package BPF\CutRisk\Model
+ * @package BPF\CtuRisk\Model
  */
 class CtuRequest
 {

@@ -1,9 +1,9 @@
 <?php
-namespace BPF\CutRisk\Util;
+namespace BPF\CtuRisk\Util;
 /**
  * Class HttpUtil
  * 顶像风http请求类
- * @package BPF\CutRisk\Util
+ * @package BPF\CtuRisk\Util
  */
 class HttpUtil
 {

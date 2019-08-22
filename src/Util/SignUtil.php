@@ -1,9 +1,9 @@
 <?php
-namespace BPF\CutRisk\Util;
+namespace BPF\CtuRisk\Util;
 /**
  * Class SignUtil
  * 顶像风控签名类
- * @package BPF\CutRisk\Util
+ * @package BPF\CtuRisk\Util
  */
 class SignUtil
 {

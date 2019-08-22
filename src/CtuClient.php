@@ -1,11 +1,11 @@
 <?php
-namespace BPF\CutRisk;
+namespace BPF\CtuRisk;
 
-use BPF\CutRisk\Model\RiskLevel;
-use BPF\CutRisk\Util\HttpUtil;
-use BPF\CutRisk\Model\CtuResponse;
-use BPF\CutRisk\Model\CtuRequest;
-use BPF\CutRisk\Util\SignUtil;
+use BPF\CtuRisk\Model\RiskLevel;
+use BPF\CtuRisk\Util\HttpUtil;
+use BPF\CtuRisk\Model\CtuResponse;
+use BPF\CtuRisk\Model\CtuRequest;
+use BPF\CtuRisk\Util\SignUtil;
 
 /**
  * Class CtuClient
@@ -14,6 +14,15 @@ use BPF\CutRisk\Util\SignUtil;
  */
 class CtuClient
 {
+    const UTF8_ENCODE = "UTF-8";
+    const VERSION = 1;     //client版本号  从1开始
+
+    /**
+     * 默认风控接口地址
+     * @var string
+     */
+    const DEFAULT_API_URL = 'http://antifraud.babytree.com/ctu/event.do';
+
     /**
      * 当前请求参数
      * @var CtuRequest
@@ -38,19 +47,15 @@ class CtuClient
     public $connectionRequestTimeout = 2000;
     public $socketTimeout = 5000;
 
-    const UTF8_ENCODE = "UTF-8";
-    const VERSION = 1;     //client版本号  从1开始
-
-
     /**
      * CtuClient constructor.
-     * @param $url
      * @param $appId
      * @param $appSecret
+     * @param $url
      */
-    public function __construct($url, $appId, $appSecret)
+    public function __construct($appId, $appSecret, $url = '')
     {
-        $this->url = $url;
+        $this->url = $url ?: self::DEFAULT_API_URL;
         $this->appId = $appId;
         $this->appSecret = $appSecret;
     }
@@ -73,13 +78,13 @@ class CtuClient
 
     /**
      * 请求风控系统接口 返回是否有风险 true 为有风险
-     * @param CtuRequest $ctuRequest
-     * @param $rejectStrategy
-     * @param $strict
-     * @param $timeout
+     * @param CtuRequest $ctuRequest 请求的相关参数
+     * @param string|array $rejectStrategy 风控策略，什么情况下返回有风险
+     * @param bool $strict 是否严格模式，严格模式下风控接口请求失败也被认为有风险
+     * @param int $timeout 超时时间，单位秒
      * @return bool|string
      */
-    public function checkRisk(CtuRequest $ctuRequest, $rejectStrategy, $strict = false, $timeout = 2)
+    public function checkRisk(CtuRequest $ctuRequest, $rejectStrategy = RiskLevel::REJECT, $strict = false, $timeout = 2)
     {
         // 重置相关属性，以免获取到上一次的请求内容
         $this->ctuResponse = new CtuResponse('');
@@ -121,12 +126,16 @@ class CtuClient
 
     /**
      * 请求风控系统接口 返回是否有风险 true 为有风险
-     * @param $rejectStrategy
-     * @param $strict
+     * @param string|array $rejectStrategy
+     * @param bool $strict
      * @return bool
      */
-    public function hasRisk($rejectStrategy, $strict)
+    public function hasRisk($rejectStrategy, $strict = false)
     {
+        empty($rejectStrategy) && $rejectStrategy = [];
+        if (!is_array($rejectStrategy)) {
+            $rejectStrategy = [$rejectStrategy];
+        }
         return $this->ctuResponse->result->hasRisk($rejectStrategy, $strict);
     }
 }
