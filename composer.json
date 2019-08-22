@@ -1,0 +1,16 @@
+{
+    "name": "bpf/ctu_risk",
+    "description": "顶像风控sdk",
+    "authors": [
+        {
+            "name": "linzhijun",
+            "email": "linzhijun@babytree-inc.com"
+        }
+    ],
+    "require": {
+
+    },
+    "autoload": {
+        "psr-4": {"BPF\\CtuRisk\\": "src/"}
+    }
+}
